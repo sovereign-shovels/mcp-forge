@@ -2,7 +2,7 @@
 
 > Opinionated CLI to scaffold, test, and publish MCP servers. From zero to published server in under 5 minutes.
 
-**Status:** v0.1 — planning. Not yet released.
+**Status:** v0.1 — building.
 
 **Sovereignty:** sovereign-by-construction. BYO endpoint, BYO key, BYO model.
 A local-only configuration is documented and tested.
@@ -14,7 +14,11 @@ Best-effort community shovel — no SLA, no roadmap commitments.
 
 ## What this is
 
-Opinionated CLI to scaffold, test, and publish MCP servers. From zero to published server in under 5 minutes.
+`cargo new` for MCP servers. One command scaffolds a working TypeScript or Python MCP server with:
+
+- Quality templates for common patterns (read-only API, file tool, database tool)
+- Built-in test harness
+- Publish flow to npm/PyPI with sane defaults
 
 ## What this isn't
 
@@ -22,14 +26,45 @@ Not a hosted MCP platform. Not a billing or auth layer. Not a marketplace. Pure 
 
 ## Install
 
-> Coming with v0.1 release.
+```bash
+npm install -g mcp-forge
+```
+
+Or use without installing:
+
+```bash
+npx mcp-forge new my-server
+```
+
+## Quick start
+
+```bash
+# Scaffold a TypeScript file-tool server
+mcp-forge new my-server --lang typescript --template file-tool
+
+# Scaffold a Python read-only API server
+mcp-forge new my-api --lang python --template read-only-api
+
+# Test the generated server
+mcp-forge test my-server
+
+# List all templates
+mcp-forge templates
+```
+
+## Templates
+
+| Template | Description | Best for |
+|---|---|---|
+| `read-only-api` | Wraps a REST API as MCP tools | Weather, search, data APIs |
+| `file-tool` | Reads/writes/lists files in a directory | Document processing, logs |
+| `db-tool` | Queries a SQLite database | Analytics, structured data |
 
 ## Configure
 
 You bring the model. By default `mcp-forge` tries to use a local provider:
 
 - For LLM endpoints: Ollama at `http://localhost:11434`
-- For voice endpoints: configurable, see [docs/configure.md]
 
 To use any other provider (Claude, GPT, Hermes, OpenRouter, Sarvam, etc.):
 
@@ -47,6 +82,15 @@ LM Studio, and vLLM all work via their OpenAI-compatible endpoints.
 ## Why this exists
 
 Building an MCP server today involves either copy-pasting from the SDK README or doing it from scratch. There's no opinionated scaffolder with quality templates, test harness wiring, and publishing flow. mcp-forge is `cargo new` for MCP.
+
+## Commands
+
+```
+mcp-forge new <name>      Scaffold a new MCP server
+mcp-forge test <path>     Run test harness on a generated server
+mcp-forge templates       List available templates
+mcp-forge publish <path>  Prepare for npm/PyPI publish (dry-run)
+```
 
 ## What's next
 
