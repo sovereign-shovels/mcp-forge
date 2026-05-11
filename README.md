@@ -12,6 +12,23 @@ Best-effort community shovel — no SLA, no roadmap commitments.
 
 ---
 
+## Architecture
+
+```
+┌─────────────────┐     ┌──────────────┐     ┌─────────────────┐
+│  mcp-forge new  │────▶│   Template   │────▶│  Working MCP    │
+│  --template     │     │   engine     │     │  server dir     │
+│  read-only-api  │     │  (TS/Python) │     │  (with tests)   │
+└─────────────────┘     └──────────────┘     └─────────────────┘
+                               │
+                               ▼
+                        ┌──────────────┐
+                        │ mcp-forge    │
+                        │ test /       │
+                        │ publish      │
+                        └──────────────┘
+```
+
 ## What this is
 
 `cargo new` for MCP servers. One command scaffolds a working TypeScript or Python MCP server with:
@@ -50,6 +67,24 @@ mcp-forge test my-server
 
 # List all templates
 mcp-forge templates
+```
+
+**Demo output:**
+```
+$ mcp-forge templates
+Available templates:
+  read-only-api  — Wraps a REST API as MCP tools
+  file-tool      — Reads/writes/lists files in a directory
+  db-tool        — Queries a SQLite database
+
+$ mcp-forge new test-server --template read-only-api
+✓ Scaffoled typescript MCP server: test-server
+
+Next steps:
+  cd test-server
+  npm install
+  npm run build
+  npm start
 ```
 
 ## Templates

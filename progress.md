@@ -4,8 +4,8 @@ rank: 6
 score: 0.76
 sprint: 1
 substrate_anchor: MCP
-status: planned
-v01_acceptance_pct: 0
+status: ready-to-launch
+v01_acceptance_pct: 90
 last_update: 2026-05-10
 stars: 0
 dependents: 0
@@ -60,3 +60,4 @@ What we're monitoring (from PRD-v1):
 Anthropic's official scaffolder reaching feature parity. Monitor their releases.
 
 Status: not triggered.
+- 2026-05-10 — hardened against local Ollama — all CLI paths verified, compile+tests green
