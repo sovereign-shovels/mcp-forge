@@ -1,0 +1,21 @@
+{
+  "name": "test-server",
+  "version": "0.1.0",
+  "description": "MCP server: Wraps a read-only REST API as MCP tools.",
+  "type": "module",
+  "bin": {
+    "test-server": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "node --test dist/**/*.test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  }
+}
